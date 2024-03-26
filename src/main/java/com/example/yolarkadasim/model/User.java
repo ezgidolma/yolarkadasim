@@ -28,6 +28,5 @@ public class User {
 
     private String profil_resmi;
 
-    private String bildirimler;
 
 }
