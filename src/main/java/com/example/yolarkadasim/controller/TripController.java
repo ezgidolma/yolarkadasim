@@ -18,9 +18,9 @@ public class TripController {
     public List<Trip> getTrips(){
         return tripService.getTrips();
     }
-    @GetMapping("/{seyahatId}")
-    public Optional<Trip> getTripById(@PathVariable Integer seyehatId){
-        return tripService.getTripById(seyehatId);
+    @GetMapping("/{seyahat_id}")
+    public Optional<Trip> getTripById(@PathVariable Integer seyahat_id){
+        return tripService.getTripById(seyahat_id);
     }
 
     @PostMapping()

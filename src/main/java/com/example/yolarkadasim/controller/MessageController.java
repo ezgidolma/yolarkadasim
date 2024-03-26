@@ -19,9 +19,9 @@ public class MessageController {
         return messageService.getMessagges();
     }
 
-    @GetMapping("/{mesajId}")
-    public Optional<Message> getMessageById(@PathVariable Integer mesajId){
-        return messageService.getMessaggeById(mesajId);
+    @GetMapping("/{mesaj_id}")
+    public Optional<Message> getMessageById(@PathVariable Integer mesaj_id){
+        return messageService.getMessaggeById(mesaj_id);
     }
 
     @PostMapping
@@ -29,13 +29,13 @@ public class MessageController {
         return messageService.addMessage(message);
     }
 
-    @PutMapping("/{mesjId}")
-    public Message updateMessage(@PathVariable Integer mesajId,@RequestBody Message message){
-        return messageService.updateMessage(mesajId,message);
+    @PutMapping("/{mesaj_id}")
+    public Message updateMessage(@PathVariable Integer mesaj_id,@RequestBody Message message){
+        return messageService.updateMessage(mesaj_id,message);
     }
 
-    @DeleteMapping("/{mesjId}")
-    public  void deleteMessage(@PathVariable Integer mesajId){
-        messageService.deleteMessage(mesajId);
+    @DeleteMapping("/{mesaj_id}")
+    public  void deleteMessage(@PathVariable Integer mesaj_id){
+        messageService.deleteMessage(mesaj_id);
     }
 }

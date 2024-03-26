@@ -19,9 +19,9 @@ public class ReservationController {
         return reservationService.getReservations();
     }
 
-    @GetMapping("/{rezervasyonId}")
-    public Optional<Reservation> getReservationById(@PathVariable Integer rezervasyonId){
-        return reservationService.getReservationById(rezervasyonId);
+    @GetMapping("/{rezervasyon_id}")
+    public Optional<Reservation> getReservationById(@PathVariable Integer rezervasyon_id){
+        return reservationService.getReservationById(rezervasyon_id);
     }
 
     @PostMapping()
@@ -29,13 +29,13 @@ public class ReservationController {
         return reservationService.addReservation(reservation);
     }
 
-    @PutMapping("/{rezervasyonId}")
-    public Reservation updateReservation(@PathVariable Integer rezervasyonId,@RequestBody Reservation reservation){
-        return reservationService.updateReservation(rezervasyonId,reservation);
+    @PutMapping("/{rezervasyon_id}")
+    public Reservation updateReservation(@PathVariable Integer rezervasyon_id,@RequestBody Reservation reservation){
+        return reservationService.updateReservation(rezervasyon_id,reservation);
     }
 
-    @DeleteMapping()
-    public void deleteReservation(@PathVariable Integer rezervasyonId){
-        reservationService.deleteReservation(rezervasyonId);
+    @DeleteMapping("/{rezervasyon_id}")
+    public void deleteReservation(@PathVariable Integer rezervasyon_id){
+        reservationService.deleteReservation(rezervasyon_id);
     }
 }

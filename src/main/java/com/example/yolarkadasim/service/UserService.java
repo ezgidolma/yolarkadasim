@@ -12,6 +12,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class UserService {
 
+
     @Autowired
     private final UserRepository userRepository;
 
@@ -36,11 +37,10 @@ public class UserService {
             currentUser.setAd(user.getAd());
             currentUser.setSoyad(user.getSoyad());
             currentUser.setEposta(user.getEposta());
-            currentUser.setSifre(user.getSifre());
             currentUser.setDogum_tarihi(user.getDogum_tarihi());
             currentUser.setKayit_tarihi(user.getKayit_tarihi());
             currentUser.setProfil_resmi(user.getProfil_resmi());
-
+            currentUser.setSifre(user.getSifre());
             return userRepository.save(currentUser);
         }
 

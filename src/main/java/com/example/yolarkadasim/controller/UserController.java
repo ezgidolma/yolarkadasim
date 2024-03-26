@@ -19,23 +19,25 @@ public class UserController {
         return userService.getUsers();
     }
 
-    @GetMapping("/{kullanıcıId}")
-    public Optional<User> getByIdUser(@PathVariable Integer kullanıcıId){
-        return userService.getUserById(kullanıcıId);
+    @GetMapping("/{kullanici_id}")
+    public Optional<User> getByIdUser(@PathVariable Integer kullanici_id){
+        return userService.getUserById(kullanici_id);
     }
 
-    @PostMapping()
+    @PostMapping
     public User addUser(@RequestBody User user){
         return userService.addUser(user);
     }
 
-    @PutMapping("/{kullanıcıId}")
-    public User updateUser(@PathVariable Integer kullanıcıId, @RequestBody User user){
-        return userService.updateUser(kullanıcıId,user);
+    @PutMapping("/{kullanici_id}")
+    public User updateUser(@PathVariable Integer kullanici_id, @RequestBody User user){
+        return userService.updateUser(kullanici_id,user);
     }
 
-    @DeleteMapping("/{kullanıcıId}")
-    public void deleteUser(@PathVariable Integer kullanıcıId){
-        userService.getUserById(kullanıcıId);
+    @DeleteMapping("/{kullanici_id}")
+    public void deleteUser(@PathVariable Integer kullanici_id){
+        userService.deleteUser(kullanici_id);
     }
+
+
 }
