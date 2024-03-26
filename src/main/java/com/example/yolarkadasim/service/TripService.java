@@ -5,6 +5,9 @@ import com.example.yolarkadasim.repository.TripRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,4 +56,8 @@ public class TripService {
         tripRepository.deleteById(id);
       }
 
+      public List<Trip> searchTrip(String baslangic_noktasi, String bitis_noktasi, LocalDate tarih, int kisi_sayisi){
+
+        return tripRepository.findFilteredTrips(baslangic_noktasi,bitis_noktasi,tarih,kisi_sayisi);
+      }
 }
