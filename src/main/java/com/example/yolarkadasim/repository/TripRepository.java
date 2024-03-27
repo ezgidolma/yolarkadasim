@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface TripRepository extends MongoRepository<Trip,Integer> {
 
-    @Query("{'baslangic_noktasi': ?0, 'bitis_noktasi': ?1, 'tarih': ?2, 'bos_koltuk_sayisi': ?3}")
-    List<Trip> findFilteredTrips(String baslangicNoktasi, String bitisNoktasi, LocalDate tarih, int kisiSayisi);
+    @Query("{'baslangic_noktasi': ?0, 'bitis_noktasi': ?1, 'tarih': ?2, 'bos_koltuk_sayisi': {$lte: ?3}}")
+    List<Trip> findFilteredTrips(String baslangic_noktasi, String bitis_noktasi, LocalDate tarih, int kisi_sayisi);
 }
