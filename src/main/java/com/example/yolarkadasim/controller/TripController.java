@@ -20,6 +20,7 @@ public class TripController {
     @Autowired
     private TripService tripService;
 
+
     @GetMapping
     public List<Trip> getTrips(){
         return tripService.getTrips();
@@ -29,14 +30,14 @@ public class TripController {
         return tripService.getTripById(seyahat_id);
     }
 
-    @PostMapping()
+    @PostMapping
     public Trip addTrip(@RequestBody Trip trip){
         return tripService.addTrip(trip);
     }
 
-    @PutMapping("/{seyahatId}")
-    public Trip updateTrip(@PathVariable Integer seyahatId,@RequestBody Trip trip){
-        return tripService.updateTrip(seyahatId,trip);
+    @PutMapping
+    public Trip updateTrip(@RequestBody Trip trip){
+        return tripService.updateTrip(trip);
     }
 
     @DeleteMapping("/{seyahatId}")

@@ -29,9 +29,9 @@ public class MessageController {
         return messageService.addMessage(message);
     }
 
-    @PutMapping("/{mesaj_id}")
-    public Message updateMessage(@PathVariable Integer mesaj_id,@RequestBody Message message){
-        return messageService.updateMessage(mesaj_id,message);
+    @PutMapping
+    public Message updateMessage(@RequestBody Message message){
+        return messageService.updateMessage(message);
     }
 
     @DeleteMapping("/{mesaj_id}")

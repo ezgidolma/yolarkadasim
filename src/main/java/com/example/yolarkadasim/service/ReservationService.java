@@ -17,6 +17,7 @@ public class ReservationService {
     @Autowired
     public ReservationRepository reservationRepository;
 
+
     public List<Reservation> getReservations(){
        return reservationRepository.findAll();
     }
@@ -29,9 +30,9 @@ public class ReservationService {
         return reservationRepository.save(reservation);
     }
 
-    public Reservation updateReservation(Integer id, Reservation reservation){
+    public Reservation updateReservation( Reservation reservation){
 
-        Optional<Reservation> optionalReservation = reservationRepository.findById(id);
+        Optional<Reservation> optionalReservation = reservationRepository.findById(reservation.getRezervasyon_id());
 
         if (optionalReservation.isPresent()){
             Reservation currentReservation = optionalReservation.get();

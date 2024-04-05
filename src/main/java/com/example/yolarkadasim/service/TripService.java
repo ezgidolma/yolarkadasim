@@ -29,8 +29,8 @@ public class TripService {
         return tripRepository.save(trip);
     }
 
-     public Trip updateTrip(Integer id,Trip trip){
-        Optional<Trip> optionalTrip = getTripById(id);
+     public Trip updateTrip(Trip trip){
+        Optional<Trip> optionalTrip = getTripById(trip.getSeyahat_id());
 
         if (optionalTrip.isPresent()){
             Trip currentTrip = optionalTrip.get();

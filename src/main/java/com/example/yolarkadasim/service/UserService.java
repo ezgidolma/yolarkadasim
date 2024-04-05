@@ -2,19 +2,18 @@ package com.example.yolarkadasim.service;
 
 import com.example.yolarkadasim.model.User;
 import com.example.yolarkadasim.repository.UserRepository;
-import lombok.AllArgsConstructor;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
 public class UserService {
 
-
     @Autowired
-    private final UserRepository userRepository;
+    private UserRepository userRepository;
+
 
     public List<User> getUsers(){
         return userRepository.findAll();
@@ -28,8 +27,8 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User updateUser(Integer id, User user){
-        Optional<User> optionalUser = getUserById(id);
+    public User updateUser(User user){
+        Optional<User> optionalUser = getUserById(user.getKullanici_id());
 
         if (optionalUser.isPresent()){
             User currentUser = optionalUser.get();
@@ -50,5 +49,6 @@ public class UserService {
     public void deleteUser(Integer id){
         userRepository.deleteById(id);
     }
+
 
 }

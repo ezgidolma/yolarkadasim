@@ -24,14 +24,14 @@ public class ReservationController {
         return reservationService.getReservationById(rezervasyon_id);
     }
 
-    @PostMapping()
+    @PostMapping
     public Reservation addReservation(@RequestBody Reservation reservation){
         return reservationService.addReservation(reservation);
     }
 
-    @PutMapping("/{rezervasyon_id}")
-    public Reservation updateReservation(@PathVariable Integer rezervasyon_id,@RequestBody Reservation reservation){
-        return reservationService.updateReservation(rezervasyon_id,reservation);
+    @PutMapping
+    public Reservation updateReservation(@RequestBody Reservation reservation){
+        return reservationService.updateReservation(reservation);
     }
 
     @DeleteMapping("/{rezervasyon_id}")

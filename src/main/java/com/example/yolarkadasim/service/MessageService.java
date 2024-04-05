@@ -27,8 +27,8 @@ public class MessageService {
         return  messageRepository.save(message);
     }
 
-    public Message updateMessage(Integer id, Message message){
-        Optional<Message> optionalMessage = messageRepository.findById(id);
+    public Message updateMessage(Message message){
+        Optional<Message> optionalMessage = messageRepository.findById(message.getMesaj_id());
 
         if (optionalMessage.isPresent()){
             Message currentMessage = optionalMessage.get();
