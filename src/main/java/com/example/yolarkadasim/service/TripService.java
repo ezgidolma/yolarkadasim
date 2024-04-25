@@ -21,7 +21,7 @@ public class TripService {
       return tripRepository.findAll();
     };
 
-    public Optional<Trip> getTripById(Integer id){
+    public Optional<Trip> getTripById(String id){
         return  tripRepository.findById(id);
     }
 
@@ -51,7 +51,7 @@ public class TripService {
         return null;
      }
 
-     public void  deleteTrip(Integer id){
+     public void  deleteTrip(String id){
         tripRepository.deleteById(id);
       }
 

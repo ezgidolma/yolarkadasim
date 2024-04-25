@@ -20,7 +20,7 @@ public class ReservationController {
     }
 
     @GetMapping("/{rezervasyon_id}")
-    public Optional<Reservation> getReservationById(@PathVariable Integer rezervasyon_id){
+    public Optional<Reservation> getReservationById(@PathVariable String rezervasyon_id){
         return reservationService.getReservationById(rezervasyon_id);
     }
 
@@ -35,7 +35,7 @@ public class ReservationController {
     }
 
     @DeleteMapping("/{rezervasyon_id}")
-    public void deleteReservation(@PathVariable Integer rezervasyon_id){
+    public void deleteReservation(@PathVariable String rezervasyon_id){
         reservationService.deleteReservation(rezervasyon_id);
     }
 }

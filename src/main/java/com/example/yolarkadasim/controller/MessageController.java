@@ -20,7 +20,7 @@ public class MessageController {
     }
 
     @GetMapping("/{mesaj_id}")
-    public Optional<Message> getMessageById(@PathVariable Integer mesaj_id){
+    public Optional<Message> getMessageById(@PathVariable String mesaj_id){
         return messageService.getMessaggeById(mesaj_id);
     }
 
@@ -35,7 +35,7 @@ public class MessageController {
     }
 
     @DeleteMapping("/{mesaj_id}")
-    public  void deleteMessage(@PathVariable Integer mesaj_id){
+    public  void deleteMessage(@PathVariable String mesaj_id){
         messageService.deleteMessage(mesaj_id);
     }
 }

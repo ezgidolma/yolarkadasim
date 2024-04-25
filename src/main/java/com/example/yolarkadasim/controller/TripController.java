@@ -26,7 +26,7 @@ public class TripController {
         return tripService.getTrips();
     }
     @GetMapping("/{seyahat_id}")
-    public Optional<Trip> getTripById(@PathVariable Integer seyahat_id){
+    public Optional<Trip> getTripById(@PathVariable String seyahat_id){
         return tripService.getTripById(seyahat_id);
     }
 
@@ -41,7 +41,7 @@ public class TripController {
     }
 
     @DeleteMapping("/{seyahatId}")
-    public void deleteTrip(@PathVariable Integer seyahatId){
+    public void deleteTrip(@PathVariable String seyahatId){
          tripService.deleteTrip(seyahatId);
     }
 

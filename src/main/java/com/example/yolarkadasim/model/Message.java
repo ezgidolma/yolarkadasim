@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
-import java.time.LocalDate;
 import java.util.Date;
 @Data
 @NoArgsConstructor
@@ -13,11 +12,11 @@ import java.util.Date;
 public class Message {
 
     @Id
-    private int mesaj_id;
+    private String mesaj_id;
 
-    private int gonderen_id;
+    private String gonderen_id;
 
-    private int alici_id;
+    private String alici_id;
 
     private String mesaj;
 

@@ -22,7 +22,7 @@ public class ReservationService {
        return reservationRepository.findAll();
     }
 
-    public Optional<Reservation> getReservationById(Integer id){
+    public Optional<Reservation> getReservationById(String id){
         return reservationRepository.findById(id);
     }
 
@@ -49,7 +49,7 @@ public class ReservationService {
         }
     }
 
-    public void deleteReservation(Integer id){
+    public void deleteReservation(String id){
         reservationRepository.deleteById(id);
     }
 }

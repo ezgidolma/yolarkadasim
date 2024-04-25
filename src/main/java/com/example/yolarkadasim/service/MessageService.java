@@ -19,7 +19,7 @@ public class MessageService {
         return messageRepository.findAll();
     }
 
-    public Optional<Message> getMessaggeById(Integer id){
+    public Optional<Message> getMessaggeById(String id){
         return messageRepository.findById(id);
     }
 
@@ -45,7 +45,7 @@ public class MessageService {
         }
     }
 
-    public void deleteMessage(Integer id){
+    public void deleteMessage(String id){
         messageRepository.deleteById(id);
     }
 }
