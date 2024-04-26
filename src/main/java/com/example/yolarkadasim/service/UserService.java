@@ -16,7 +16,7 @@ public class UserService {
     private UserRepository userRepository;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+   private PasswordEncoder passwordEncoder;
 
 
     public List<User> getUsers(){
@@ -30,6 +30,7 @@ public class UserService {
     public Optional<User> getUserById(String id){
         return userRepository.findById(id);
     }
+
 
     public User updateUser(User user){
         String eposta = user.getEposta();
