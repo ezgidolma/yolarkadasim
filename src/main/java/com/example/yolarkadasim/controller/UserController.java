@@ -14,6 +14,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/kullanicilar")
 @AllArgsConstructor
+@CrossOrigin
 public class UserController {
 
 

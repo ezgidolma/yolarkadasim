@@ -15,6 +15,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/seyahatlar")
+@CrossOrigin
 public class TripController {
 
     @Autowired

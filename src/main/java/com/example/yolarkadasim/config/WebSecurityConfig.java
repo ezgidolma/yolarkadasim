@@ -19,7 +19,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 
 import static org.springframework.security.config.Customizer.withDefaults;
@@ -27,19 +28,31 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig{
+public class WebSecurityConfig implements WebMvcConfigurer {
 
-
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("http://localhost:5173") // React uygulamasının adresi
+                .allowedMethods("GET", "POST", "PUT", "DELETE") // İzin verilen HTTP metotları
+                .allowedHeaders("*")
+                .allowCredentials(true) // Tarayıcıya çerez gönderilmesine izin ver
+                .maxAge(3600); // Önbellek süresi (saniye cinsinden), isteğin tekrarlanmasını engeller
+    }
 
     @Bean
     public SecurityFilterChain defaultFilterChain(HttpSecurity httpSecurity) throws Exception {
+
         return httpSecurity
                 .csrf(csrf-> csrf.disable())
+
                 .authorizeHttpRequests(auth-> auth.requestMatchers("api/kullanicilar/register","/error").permitAll()
                         .anyRequest().authenticated())
                 .httpBasic(withDefaults())
                 .formLogin(withDefaults())
+
                 .build();
+
     }
 
     @Bean

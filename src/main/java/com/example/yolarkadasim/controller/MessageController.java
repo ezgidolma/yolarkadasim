@@ -9,6 +9,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/mesajlar")
+@CrossOrigin
 public class MessageController {
 
     @Autowired
