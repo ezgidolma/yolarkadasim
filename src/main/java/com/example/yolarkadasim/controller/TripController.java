@@ -20,7 +20,6 @@ public class TripController {
     @Autowired
     private TripService tripService;
 
-
     @GetMapping
     public List<Trip> getTrips(){
         return tripService.getTrips();
@@ -47,10 +46,13 @@ public class TripController {
 
     @GetMapping("/arama")
     public List<Trip> searchTrip(@RequestParam("baslangic_noktasi") String baslangic_noktasi,
-                                                 @RequestParam("bitis_noktasi") String bitis_noktasi,
-                                                 @RequestParam("tarih")  @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate tarih,
-                                                 @RequestParam("kisi_sayisi") int kisi_sayisi){
+                                 @RequestParam("bitis_noktasi") String bitis_noktasi,
+                                 @RequestParam("tarih")  @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate tarih,
+                                 @RequestParam("kisi_sayisi") int kisi_sayisi)
+    {
         return tripService.searchTrip(baslangic_noktasi,bitis_noktasi,tarih,kisi_sayisi);
+
+
 
     }
 

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,7 +37,6 @@ public class TripService {
             Trip currentTrip = optionalTrip.get();
 
             currentTrip.setSurucu_id(trip.getSurucu_id());
-            currentTrip.setSeyahat_id(trip.getSeyahat_id());
             currentTrip.setBos_koltuk_sayisi(trip.getBos_koltuk_sayisi());
             currentTrip.setSigara_durumu(trip.isSigara_durumu());
             currentTrip.setHayvan_durumu(trip.isHayvan_durumu());
@@ -56,7 +56,6 @@ public class TripService {
       }
 
       public List<Trip> searchTrip(String baslangic_noktasi, String bitis_noktasi, LocalDate tarih, int kisi_sayisi){
-
         return tripRepository.findFilteredTrips(baslangic_noktasi,bitis_noktasi,tarih,kisi_sayisi);
       }
 }
