@@ -16,7 +16,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/seyahatlar")
 public class TripController {
-
+  //kubra12344
     @Autowired
     private TripService tripService;
 
