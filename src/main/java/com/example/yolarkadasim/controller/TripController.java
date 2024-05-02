@@ -16,7 +16,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/seyahatlar")
 public class TripController {
-  //kubra12344
     @Autowired
     private TripService tripService;
 
@@ -51,8 +50,6 @@ public class TripController {
                                  @RequestParam("kisi_sayisi") int kisi_sayisi)
     {
         return tripService.searchTrip(baslangic_noktasi,bitis_noktasi,tarih,kisi_sayisi);
-
-
 
     }
 
