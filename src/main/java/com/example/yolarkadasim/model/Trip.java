@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 
 @Data
@@ -23,6 +24,8 @@ public class Trip {
     private String bitis_noktasi;
 
     private LocalDate tarih;
+
+    private LocalTime saat;
 
     private int bos_koltuk_sayisi;
 
