@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/seyahatlar")
+@RequestMapping("/api/seyahatler")
 public class TripController {
     @Autowired
     private TripService tripService;
