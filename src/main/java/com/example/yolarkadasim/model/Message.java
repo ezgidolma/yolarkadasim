@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
+import java.time.LocalDate;
 import java.util.Date;
 @Data
 @NoArgsConstructor
@@ -20,5 +21,5 @@ public class Message {
 
     private String mesaj;
 
-    private Date tarih;
+    private LocalDate tarih;
 }

@@ -46,7 +46,7 @@ public class TripController {
     @GetMapping("/arama")
     public List<Trip> searchTrip(@RequestParam("baslangic_noktasi") String baslangic_noktasi,
                                  @RequestParam("bitis_noktasi") String bitis_noktasi,
-                                 @RequestParam("tarih")  @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate tarih,
+                                 @RequestParam("tarih")  @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate tarih,
                                  @RequestParam("kisi_sayisi") int kisi_sayisi)
     {
         return tripService.searchTrip(baslangic_noktasi,bitis_noktasi,tarih,kisi_sayisi);

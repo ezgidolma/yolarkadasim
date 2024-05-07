@@ -7,6 +7,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -26,9 +27,9 @@ public class User  {
 
     private String sifre;
 
-    private Date dogum_tarihi;
+    private LocalDate dogum_tarihi;
 
-    private Date kayit_tarihi;
+    private LocalDate kayit_tarihi;
 
     private String profil_resmi;
 
