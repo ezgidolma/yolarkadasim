@@ -19,23 +19,23 @@ public class ReservationController {
         return reservationService.getReservations();
     }
 
-    @GetMapping("/{rezervasyon_id}")
-    public Optional<Reservation> getReservationById(@PathVariable String rezervasyon_id){
-        return reservationService.getReservationById(rezervasyon_id);
+    @GetMapping("/{rezervasyonId}")
+    public Optional<Reservation> getReservationById(@PathVariable String rezervasyonId){
+        return reservationService.getReservationById(rezervasyonId);
     }
 
     @PostMapping
-    public Reservation addReservation(@RequestBody Reservation reservation){
-        return reservationService.addReservation(reservation);
+    public Reservation addReservation(@RequestBody Reservation rezervazsyon){
+        return reservationService.addReservation(rezervazsyon);
     }
 
     @PutMapping
-    public Reservation updateReservation(@RequestBody Reservation reservation){
-        return reservationService.updateReservation(reservation);
+    public Reservation updateReservation(@RequestBody Reservation rezervazsyon){
+        return reservationService.updateReservation(rezervazsyon);
     }
 
-    @DeleteMapping("/{rezervasyon_id}")
-    public void deleteReservation(@PathVariable String rezervasyon_id){
-        reservationService.deleteReservation(rezervasyon_id);
+    @DeleteMapping("/{rezervasyonId}")
+    public void deleteReservation(@PathVariable String rezervasyonId){
+        reservationService.deleteReservation(rezervasyonId);
     }
 }

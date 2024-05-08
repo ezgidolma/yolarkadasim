@@ -6,18 +6,18 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
 import java.time.LocalDate;
-import java.util.Date;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Message {
 
     @Id
-    private String mesaj_id;
+    private String mesajId;
 
-    private String gonderen_id;
+    private String gonderenId;
 
-    private String alici_id;
+    private String aliciId;
 
     private String mesaj;
 

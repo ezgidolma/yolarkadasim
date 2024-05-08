@@ -25,24 +25,24 @@ public class TripService {
         return  tripRepository.findById(id);
     }
 
-    public Trip addTrip(Trip trip){
-        return tripRepository.save(trip);
+    public Trip addTrip(Trip seyahat){
+        return tripRepository.save(seyahat);
     }
 
-     public Trip updateTrip(Trip trip){
-        Optional<Trip> optionalTrip = getTripById(trip.getSeyahat_id());
+     public Trip updateTrip(Trip seyahat){
+        Optional<Trip> optionalTrip = getTripById(seyahat.getSeyahatId());
 
         if (optionalTrip.isPresent()){
             Trip currentTrip = optionalTrip.get();
 
-            currentTrip.setSurucu_id(trip.getSurucu_id());
-            currentTrip.setBos_koltuk_sayisi(trip.getBos_koltuk_sayisi());
-            currentTrip.setSigara_durumu(trip.isSigara_durumu());
-            currentTrip.setHayvan_durumu(trip.isHayvan_durumu());
-            currentTrip.setBitis_noktasi(trip.getBitis_noktasi());
-            currentTrip.setBaslangic_noktasi(trip.getBaslangic_noktasi());
-            currentTrip.setUcret(trip.getUcret());
-            currentTrip.setTarih(trip.getTarih());
+            currentTrip.setSurucuId(seyahat.getSurucuId());
+            currentTrip.setBosKoltukSayisi(seyahat.getBosKoltukSayisi());
+            currentTrip.setSigaraDurumu(seyahat.isSigaraDurumu());
+            currentTrip.setHayvanDurumu(seyahat.isHayvanDurumu());
+            currentTrip.setBitisNoktasi(seyahat.getBitisNoktasi());
+            currentTrip.setBaslangicNoktasi(seyahat.getBaslangicNoktasi());
+            currentTrip.setUcret(seyahat.getUcret());
+            currentTrip.setTarih(seyahat.getTarih());
 
             return tripRepository.save(currentTrip);
         }
@@ -54,7 +54,7 @@ public class TripService {
         tripRepository.deleteById(id);
       }
 
-      public List<Trip> searchTrip(String baslangic_noktasi, String bitis_noktasi, LocalDate tarih, int kisi_sayisi){
-        return tripRepository.findFilteredTrips(baslangic_noktasi,bitis_noktasi,tarih,kisi_sayisi);
+      public List<Trip> searchTrip(String baslangicNoktasi, String bitisNoktasi, LocalDate tarih, int bosKoltukSayisi){
+        return tripRepository.findFilteredTrips(baslangicNoktasi,bitisNoktasi,tarih,bosKoltukSayisi);
       }
 }

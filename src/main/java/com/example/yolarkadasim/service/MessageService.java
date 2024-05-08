@@ -23,20 +23,20 @@ public class MessageService {
         return messageRepository.findById(id);
     }
 
-    public Message addMessage(Message message){
-        return  messageRepository.save(message);
+    public Message addMessage(Message mesaj){
+        return  messageRepository.save(mesaj);
     }
 
-    public Message updateMessage(Message message){
-        Optional<Message> optionalMessage = messageRepository.findById(message.getMesaj_id());
+    public Message updateMessage(Message mesaj){
+        Optional<Message> optionalMessage = messageRepository.findById(mesaj.getMesajId());
 
         if (optionalMessage.isPresent()){
             Message currentMessage = optionalMessage.get();
 
-            currentMessage.setMesaj(message.getMesaj());
-            currentMessage.setTarih(message.getTarih());
-            currentMessage.setAlici_id(message.getAlici_id());
-            currentMessage.setGonderen_id(message.getGonderen_id());
+            currentMessage.setMesaj(mesaj.getMesaj());
+            currentMessage.setTarih(mesaj.getTarih());
+            currentMessage.setAliciId(mesaj.getAliciId());
+            currentMessage.setGonderenId(mesaj.getGonderenId());
 
             return messageRepository.save(currentMessage);
         }

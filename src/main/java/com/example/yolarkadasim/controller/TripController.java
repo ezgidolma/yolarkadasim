@@ -23,19 +23,19 @@ public class TripController {
     public List<Trip> getTrips(){
         return tripService.getTrips();
     }
-    @GetMapping("/{seyahat_id}")
-    public Optional<Trip> getTripById(@PathVariable String seyahat_id){
-        return tripService.getTripById(seyahat_id);
+    @GetMapping("/{seyahatId}")
+    public Optional<Trip> getTripById(@PathVariable String seyahatId){
+        return tripService.getTripById(seyahatId);
     }
 
     @PostMapping
-    public Trip addTrip(@RequestBody Trip trip){
-        return tripService.addTrip(trip);
+    public Trip addTrip(@RequestBody Trip seyahat){
+        return tripService.addTrip(seyahat);
     }
 
     @PutMapping
-    public Trip updateTrip(@RequestBody Trip trip){
-        return tripService.updateTrip(trip);
+    public Trip updateTrip(@RequestBody Trip seyahat){
+        return tripService.updateTrip(seyahat);
     }
 
     @DeleteMapping("/{seyahatId}")
@@ -44,12 +44,12 @@ public class TripController {
     }
 
     @GetMapping("/arama")
-    public List<Trip> searchTrip(@RequestParam("baslangic_noktasi") String baslangic_noktasi,
-                                 @RequestParam("bitis_noktasi") String bitis_noktasi,
+    public List<Trip> searchTrip(@RequestParam("baslangicNoktasi") String baslangicNoktasi,
+                                 @RequestParam("bitisNoktasi") String bitisNoktasi,
                                  @RequestParam("tarih")  @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate tarih,
-                                 @RequestParam("kisi_sayisi") int kisi_sayisi)
+                                 @RequestParam("bosKoltukSayisi") int bosKoltukSayisi)
     {
-        return tripService.searchTrip(baslangic_noktasi,bitis_noktasi,tarih,kisi_sayisi);
+        return tripService.searchTrip(baslangicNoktasi,bitisNoktasi,tarih,bosKoltukSayisi);
 
     }
 

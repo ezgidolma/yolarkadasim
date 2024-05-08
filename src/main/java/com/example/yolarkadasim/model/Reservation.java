@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -15,15 +14,15 @@ import java.util.Date;
 public class Reservation {
 
     @Id
-    private String rezervasyon_id;
+    private String rezervasyonId;
 
-    private String kullanici_id;
+    private String kullaniciId;
 
-    private String seyahat_id;
+    private String seyahatId;
 
-    private int yolcu_sayisi;
+    private int yolcuSayisi;
 
-    private LocalDate rezervasyon_tarihi;
+    private LocalDate rezervasyonTarihi;
 
     private boolean durum;
 }

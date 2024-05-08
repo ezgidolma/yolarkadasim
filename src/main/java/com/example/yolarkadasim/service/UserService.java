@@ -23,8 +23,8 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User addUser(User user){
-        return userRepository.save(user);
+    public User addUser(User kullanici){
+        return userRepository.save(kullanici);
     }
 
     public Optional<User> getUserById(String id){
@@ -43,9 +43,9 @@ public class UserService {
 
                 currentUser.setAd(user.getAd());
                 currentUser.setSoyad(user.getSoyad());
-                currentUser.setDogum_tarihi(user.getDogum_tarihi());
-                currentUser.setKayit_tarihi(user.getKayit_tarihi());
-                currentUser.setProfil_resmi(user.getProfil_resmi());
+                currentUser.setDogumTarihi(user.getDogumTarihi());
+                currentUser.setKayitTarihi(user.getKayitTarihi());
+                currentUser.setProfilResmi(user.getProfilResmi());
 
                 if (user.getSifre() != null && !user.getSifre().isEmpty() && !user.getSifre().equals(currentUser.getSifre())) {
                     String hashedPassword = passwordEncoder.encode(user.getSifre());

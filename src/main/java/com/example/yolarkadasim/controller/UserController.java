@@ -33,24 +33,24 @@ public class UserController {
         return userService.getUsers();
     }
 
-    @GetMapping("/{kullanici_id}")
-    public Optional<User> getByIdUser(@PathVariable String kullanici_id){
-        return userService.getUserById(kullanici_id);
+    @GetMapping("/{kullaniciId}")
+    public Optional<User> getByIdUser(@PathVariable String kullaniciId){
+        return userService.getUserById(kullaniciId);
     }
 
     @PostMapping
-    public User addUser(@RequestBody User user){
-        return userService.addUser(user);
+    public User addUser(@RequestBody User kullanici){
+        return userService.addUser(kullanici);
     }
 
     @PutMapping
-    public User updateUser(@RequestBody User user){
-        return userService.updateUser(user);
+    public User updateUser(@RequestBody User kullanici){
+        return userService.updateUser(kullanici);
     }
 
-    @DeleteMapping("/{kullanici_id}")
-    public void deleteUser(@PathVariable String kullanici_id){
-        userService.deleteUser(kullanici_id);
+    @DeleteMapping("/{kullaniciId}")
+    public void deleteUser(@PathVariable String kullaniciId){
+        userService.deleteUser(kullaniciId);
     }
 
     @PostMapping("/login")

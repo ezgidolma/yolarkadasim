@@ -8,7 +8,6 @@ import org.springframework.data.mongodb.core.index.Indexed;
 
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -16,7 +15,7 @@ import java.util.Date;
 public class User  {
 
     @Id
-    private String kullanici_id;
+    private String kullaniciId;
 
     private String ad;
 
@@ -27,11 +26,11 @@ public class User  {
 
     private String sifre;
 
-    private LocalDate dogum_tarihi;
+    private LocalDate dogumTarihi;
 
-    private LocalDate kayit_tarihi;
+    private LocalDate kayitTarihi;
 
-    private String profil_resmi;
+    private String profilResmi;
 
 
 }

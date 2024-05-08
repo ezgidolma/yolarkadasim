@@ -26,21 +26,21 @@ public class ReservationService {
         return reservationRepository.findById(id);
     }
 
-    public Reservation addReservation(Reservation reservation){
-        return reservationRepository.save(reservation);
+    public Reservation addReservation(Reservation rezervasyon){
+        return reservationRepository.save(rezervasyon);
     }
 
-    public Reservation updateReservation( Reservation reservation){
+    public Reservation updateReservation( Reservation rezervasyon){
 
-        Optional<Reservation> optionalReservation = reservationRepository.findById(reservation.getRezervasyon_id());
+        Optional<Reservation> optionalReservation = reservationRepository.findById(rezervasyon.getRezervasyonId());
 
         if (optionalReservation.isPresent()){
             Reservation currentReservation = optionalReservation.get();
 
-            currentReservation.setRezervasyon_tarihi(reservation.getRezervasyon_tarihi());
-            currentReservation.setDurum(reservation.isDurum());
-            currentReservation.setKullanici_id(reservation.getKullanici_id());
-            currentReservation.setSeyahat_id(reservation.getSeyahat_id());
+            currentReservation.setRezervasyonTarihi(rezervasyon.getRezervasyonTarihi());
+            currentReservation.setDurum(rezervasyon.isDurum());
+            currentReservation.setKullaniciId(rezervasyon.getKullaniciId());
+            currentReservation.setSeyahatId(rezervasyon.getSeyahatId());
 
             return reservationRepository.save(currentReservation);
         }

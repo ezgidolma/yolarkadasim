@@ -15,23 +15,23 @@ import java.time.LocalTime;
 public class Trip {
 
     @Id
-    private String seyahat_id;
+    private String seyahatId;
 
-    private String surucu_id;
+    private String surucuId;
 
-    private String baslangic_noktasi;
+    private String baslangicNoktasi;
 
-    private String bitis_noktasi;
+    private String bitisNoktasi;
 
     private LocalDate tarih;
 
     private LocalTime saat;
 
-    private int bos_koltuk_sayisi;
+    private int bosKoltukSayisi;
 
     private float ucret;
 
-    private boolean hayvan_durumu;
+    private boolean hayvanDurumu;
 
-    private boolean sigara_durumu;
+    private boolean sigaraDurumu;
 }
