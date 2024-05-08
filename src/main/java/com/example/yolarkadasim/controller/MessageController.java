@@ -6,15 +6,17 @@ import com.example.yolarkadasim.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/mesajlar")
-public class MessageController {
+public class    MessageController {
 
     @Autowired
     private MessageService messageService;
@@ -23,15 +25,11 @@ public class MessageController {
     private  SimpMessagingTemplate messagingTemplate;
 
 
-    @MessageMapping("/chat.selectUser")
-    public void selectUser(@Payload String selectedUser, SimpMessageHeaderAccessor headerAccessor) {
-        headerAccessor.getSessionAttributes().put("selectedUser", selectedUser);
-    }
-
-    @MessageMapping("/chat.sendToSelectedUser")
-    public void sendMessageToSelectedUser(@Payload ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor) {
-        String selectedUser = (String) headerAccessor.getSessionAttributes().get("selectedUser");
-        messagingTemplate.convertAndSendToUser(selectedUser, "/queue/private", chatMessage);
+    @MessageMapping("/chat")
+    @SendTo("/topic/messages")
+    public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
+        chatMessage.setTarih(new Date());
+        return chatMessage;
     }
 
 
