@@ -1,17 +1,15 @@
 package com.example.yolarkadasim.controller;
 
 import com.example.yolarkadasim.model.Message;
-import com.example.yolarkadasim.model.ChatMessage;
 import com.example.yolarkadasim.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.messaging.handler.annotation.SendTo;
+
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
+
 import java.util.Optional;
 
 @RestController
@@ -26,12 +24,14 @@ public class    MessageController {
 
 
     @MessageMapping("/chat")
-    @SendTo("/topic/messages")
-    public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
-        chatMessage.setTarih(new Date());
-        return chatMessage;
+    public void sendMessageToUser(Message chatMessage) {
+        messagingTemplate.convertAndSendToUser(chatMessage.getAliciId(), "/queue/messages", chatMessage);
     }
 
+    @MessageMapping("/inbox")
+    public void getMessageFromUser(Message chatMessage) {
+        messagingTemplate.convertAndSendToUser(chatMessage.getGonderenId(), "/queue/messages", chatMessage);
+    }
 
     @GetMapping
     public List<Message> getMessages(){

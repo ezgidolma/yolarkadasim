@@ -11,15 +11,14 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @EnableWebSocketMessageBroker //messagebrokerı aktif hale getirmiş oluyoruz
 public class WebSocket implements WebSocketMessageBrokerConfigurer  {
 
-
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/ws").setAllowedOrigins("*").withSockJS();//buraya mesaj gönderilecek
+        registry.addEndpoint("/ws").setAllowedOriginPatterns("*").withSockJS();//buraya mesaj gönderilecek
     }
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
-        registry.enableSimpleBroker("/topic"); //burdan mesaj alınacak
+        registry.enableSimpleBroker("/user/queue"); // Kullanıcıya özel kuyrukları aktifleştir
         registry.setApplicationDestinationPrefixes("/app");
     }
 }
