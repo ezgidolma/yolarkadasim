@@ -1,5 +1,6 @@
 package com.example.yolarkadasim.controller;
 
+import com.example.yolarkadasim.config.JwtUtil;
 import com.example.yolarkadasim.model.User;
 import com.example.yolarkadasim.model.UserLoginRequest;
 import com.example.yolarkadasim.repository.UserRepository;
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,7 +64,8 @@ public class UserController {
             User user = userOptional.get();
             // Kullanıcının girdiği şifreyi ve veritabanından gelen hashlenmiş şifreyi karşılaştır
             if (passwordEncoder.matches(request.getSifre(), user.getSifre())) {
-                return ResponseEntity.ok("Login successful!");
+                String token = JwtUtil.generateToken(user.getEposta(), request.getSifre());
+                return ResponseEntity.ok(token);
             } else {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email/password supplied");
             }
@@ -78,7 +81,9 @@ public class UserController {
                 return ResponseEntity.status(HttpStatus.CONFLICT).body("E-posta already taken. Please try again");
             user.setSifre(passwordEncoder.encode(user.getSifre()));
             userRepository.save(user);
-            return ResponseEntity.ok(HttpStatus.CREATED);
+            // Kayıt işlemi başarılıysa JWT tokeni oluştur ve döndür
+            String token = JwtUtil.generateToken(user.getEposta(),user.getSifre());
+            return ResponseEntity.ok(token);
         } catch (Exception e){
             return ResponseEntity.internalServerError().body(e.getMessage());
         }
