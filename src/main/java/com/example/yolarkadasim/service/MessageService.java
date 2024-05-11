@@ -33,8 +33,8 @@ public class MessageService {
         if (optionalMessage.isPresent()){
             Message currentMessage = optionalMessage.get();
 
-            currentMessage.setMesaj(mesaj.getMesaj());
-            currentMessage.setTarih(mesaj.getTarih());
+            currentMessage.setMetin(mesaj.getMetin());
+            currentMessage.setOlusturulmaTarihi(mesaj.getOlusturulmaTarihi());
             currentMessage.setAliciId(mesaj.getAliciId());
             currentMessage.setGonderenId(mesaj.getGonderenId());
 

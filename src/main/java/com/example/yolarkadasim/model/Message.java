@@ -15,11 +15,13 @@ public class Message {
     @Id
     private String mesajId;
 
-    private String gonderenId;
+    private String sohbetId;
 
     private String aliciId;
 
-    private String mesaj;
+    private String gonderenId;
 
-    private LocalDate tarih;
+    private String metin;
+
+    private LocalDate olusturulmaTarihi;
 }
