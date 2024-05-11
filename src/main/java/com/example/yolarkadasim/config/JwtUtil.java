@@ -29,6 +29,6 @@ public class JwtUtil {
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(SECRET_KEY);
 
-        return builder.compact();
+        return "token " + builder.compact();
     }
     }
