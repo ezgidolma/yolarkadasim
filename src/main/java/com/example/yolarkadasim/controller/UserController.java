@@ -64,7 +64,7 @@ public class UserController {
             User user = userOptional.get();
             // Kullanıcının girdiği şifreyi ve veritabanından gelen hashlenmiş şifreyi karşılaştır
             if (passwordEncoder.matches(request.getSifre(), user.getSifre())) {
-                String token = JwtUtil.generateToken(user.getEposta(), request.getSifre());
+                String token = JwtUtil.generateToken(user);
                 return ResponseEntity.ok(token);
             } else {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email/password supplied");
@@ -82,7 +82,7 @@ public class UserController {
             user.setSifre(passwordEncoder.encode(user.getSifre()));
             userRepository.save(user);
             // Kayıt işlemi başarılıysa JWT tokeni oluştur ve döndür
-            String token = JwtUtil.generateToken(user.getEposta(),user.getSifre());
+            String token = JwtUtil.generateToken(user);
             return ResponseEntity.ok(token);
         } catch (Exception e){
             return ResponseEntity.internalServerError().body(e.getMessage());
