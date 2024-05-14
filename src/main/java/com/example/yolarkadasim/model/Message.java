@@ -21,7 +21,7 @@ public class Message {
 
     private String gonderenId;
 
-    private String metin;
+    private String icerik;
 
     private LocalDate olusturulmaTarihi;
 }

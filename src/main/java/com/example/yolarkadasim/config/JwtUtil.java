@@ -20,6 +20,7 @@ public class JwtUtil {
 
     public static String generateToken(User user) {
         JwtBuilder builder = Jwts.builder()
+                .claim("kullaniciId",user.getKullaniciId())
                 .claim("ad", user.getAd())
                 .claim("soyad", user.getSoyad())
                 .claim("eposta", user.getEposta())

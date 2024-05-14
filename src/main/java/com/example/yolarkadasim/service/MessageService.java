@@ -33,7 +33,7 @@ public class MessageService {
         if (optionalMessage.isPresent()){
             Message currentMessage = optionalMessage.get();
 
-            currentMessage.setMetin(mesaj.getMetin());
+            currentMessage.setIcerik(mesaj.getIcerik());
             currentMessage.setOlusturulmaTarihi(mesaj.getOlusturulmaTarihi());
             currentMessage.setAliciId(mesaj.getAliciId());
             currentMessage.setGonderenId(mesaj.getGonderenId());
