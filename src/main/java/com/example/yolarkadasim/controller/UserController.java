@@ -89,5 +89,22 @@ public class UserController {
         }
     }
 
+    @PutMapping("/{kullaniciId}")
+    public ResponseEntity<String> updateUserPassword(@PathVariable String kullaniciId, @RequestBody String newPassword) {
+        User kullanici = userService.findById(kullaniciId);
+        if (kullanici == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        // Yeni şifreyi hashle
+        String hashedPassword = passwordEncoder.encode(newPassword);
+
+        // Kullanıcının şifresini güncelle
+        kullanici.setSifre(hashedPassword);
+        userService.save(kullanici);
+
+        return ResponseEntity.ok("Şifre başarıyla güncellendi.");
+    }
+
 
 }

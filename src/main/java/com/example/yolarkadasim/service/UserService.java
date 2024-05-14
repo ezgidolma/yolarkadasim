@@ -66,4 +66,11 @@ public class UserService {
     }
 
 
+    public User findById(String kullaniciId) {
+        return userRepository.findById(kullaniciId).orElse(null);
+    }
+
+    public void save(User kullanici) {
+        userRepository.save(kullanici);
+    }
 }
