@@ -18,5 +18,6 @@ public class Chat {
     private String gonderenId;
     private String aliciId;
     private Date tarih;
+    private String icerik;
 
 }

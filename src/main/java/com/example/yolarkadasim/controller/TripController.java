@@ -2,7 +2,6 @@ package com.example.yolarkadasim.controller;
 
 import com.example.yolarkadasim.model.Trip;
 import com.example.yolarkadasim.service.TripService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +15,12 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/seyahatler")
 public class TripController {
-    @Autowired
-    private TripService tripService;
+
+    private final TripService tripService;
+
+    public TripController(TripService tripService) {
+        this.tripService = tripService;
+    }
 
     @GetMapping
     public List<Trip> getTrips(){

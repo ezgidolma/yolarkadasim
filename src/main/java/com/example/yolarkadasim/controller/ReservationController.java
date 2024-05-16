@@ -2,7 +2,6 @@ package com.example.yolarkadasim.controller;
 
 import com.example.yolarkadasim.model.Reservation;
 import com.example.yolarkadasim.service.ReservationService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
@@ -11,8 +10,12 @@ import java.util.Optional;
 @RequestMapping("/api/rezervasyonlar")
 public class ReservationController {
 
-    @Autowired
-    private ReservationService reservationService;
+
+    private final ReservationService reservationService;
+
+    public ReservationController(ReservationService reservationService) {
+        this.reservationService = reservationService;
+    }
 
     @GetMapping
     public List<Reservation> getReservations(){

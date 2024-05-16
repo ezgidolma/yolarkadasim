@@ -2,21 +2,23 @@ package com.example.yolarkadasim.controller;
 
 import com.example.yolarkadasim.model.Message;
 import com.example.yolarkadasim.service.MessageService;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/mesajlar")
-public class    MessageController {
+public class MessageController {
 
-    @Autowired
-    private MessageService messageService;
+
+    private final MessageService messageService;
+
+    public MessageController(MessageService messageService) {
+        this.messageService = messageService;
+    }
 
     @GetMapping
     public List<Message> getMessages(){
