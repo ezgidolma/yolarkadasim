@@ -18,7 +18,6 @@ public class UserService {
     @Autowired
    private PasswordEncoder passwordEncoder;
 
-
     public List<User> getUsers(){
         return userRepository.findAll();
     }
@@ -43,7 +42,6 @@ public class UserService {
 
                 currentUser.setAd(user.getAd());
                 currentUser.setSoyad(user.getSoyad());
-                currentUser.setDogumTarihi(user.getDogumTarihi());
                 currentUser.setKayitTarihi(user.getKayitTarihi());
                 currentUser.setProfilResmi(user.getProfilResmi());
 

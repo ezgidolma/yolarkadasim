@@ -24,7 +24,6 @@ public class JwtUtil {
                 .claim("ad", user.getAd())
                 .claim("soyad", user.getSoyad())
                 .claim("eposta", user.getEposta())
-                .claim("dogumTarihi",user.getDogumTarihi() != null ? user.getDogumTarihi().toString() : null) // Tarih alanını kontrol et ve uygun formata dönüştür
                 .claim("profilResmi", user.getProfilResmi())
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(SECRET_KEY);
