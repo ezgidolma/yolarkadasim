@@ -24,6 +24,7 @@ public class JwtUtil {
                 .claim("ad", user.getAd())
                 .claim("soyad", user.getSoyad())
                 .claim("eposta", user.getEposta())
+                .claim("kayitTarihi",user.getKayitTarihi() != null ? user.getKayitTarihi().toString() : null)
                 .claim("profilResmi", user.getProfilResmi())
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(SECRET_KEY);
