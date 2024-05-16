@@ -3,33 +3,36 @@ package com.example.yolarkadasim.controller;
 import com.example.yolarkadasim.config.JwtUtil;
 import com.example.yolarkadasim.model.User;
 import com.example.yolarkadasim.model.UserLoginRequest;
+import com.example.yolarkadasim.model.request.UserPasswordUpdateRequest;
 import com.example.yolarkadasim.repository.UserRepository;
 import com.example.yolarkadasim.service.UserService;
-import lombok.AllArgsConstructor;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/kullanicilar")
-@AllArgsConstructor
 public class UserController {
 
+    private final UserService userService;
 
-    private UserService userService;
+    private final UserRepository userRepository;
 
-    private UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    public UserController(UserService userService, UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.userService = userService;
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
+
     @GetMapping
     public List<User> getUsers(){
         return userService.getUsers();
@@ -57,22 +60,29 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<String> loginUser(@RequestBody UserLoginRequest request) {
-        // Kullanıcının e-postasına göre veritabanından kullanıcıyı bul
-        Optional<User> userOptional = userRepository.findByEposta(request.getEposta());
+        try {
+            // Kullanıcıyı veritabanında bul
+            Optional<User> userOptional = userRepository.findByEposta(request.getEposta());
 
-        if (userOptional.isPresent()) {
+            // Kullanıcı yoksa veya şifre boşsa hemen hata döndür
+            if (userOptional.isEmpty() || request.getSifre() == null || request.getSifre().isEmpty()) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email/password supplied");
+            }
+
             User user = userOptional.get();
-            // Kullanıcının girdiği şifreyi ve veritabanından gelen hashlenmiş şifreyi karşılaştır
+
+            // Veritabanındaki hashlenmiş şifre ile kullanıcının girdiği şifreyi karşılaştır
             if (passwordEncoder.matches(request.getSifre(), user.getSifre())) {
                 String token = JwtUtil.generateToken(user);
                 return ResponseEntity.ok(token);
             } else {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email/password supplied");
             }
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not found");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred: " + e.getMessage());
         }
     }
+
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody User user){
@@ -89,22 +99,32 @@ public class UserController {
         }
     }
 
+
     @PutMapping("/{kullaniciId}")
-    public ResponseEntity<String> updateUserPassword(@PathVariable String kullaniciId, @RequestBody String newPassword) {
-        User kullanici = userService.findById(kullaniciId);
-        if (kullanici == null) {
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<String> updateUserPassword(@PathVariable String kullaniciId, @RequestBody UserPasswordUpdateRequest updateRequest) {
+        try {
+            if (updateRequest == null || updateRequest.getNewPassword()==null) {
+                return ResponseEntity.badRequest().body("Şifre boş olamaz.");
+            }
+
+            Optional<User> userOptional = userRepository.findById(kullaniciId);
+            if (userOptional.isEmpty()) {
+                return ResponseEntity.notFound().build();
+            }
+
+            User kullanici = userOptional.get();
+
+            String hashedPassword = passwordEncoder.encode(updateRequest.getNewPassword());
+            kullanici.setSifre(hashedPassword);
+            userRepository.save(kullanici);
+
+            return ResponseEntity.ok("Şifre başarıyla güncellendi.");
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body("Şifre güncellenirken bir hata oluştu: " + e.getMessage());
         }
-
-        // Yeni şifreyi hashle
-        String hashedPassword = passwordEncoder.encode(newPassword);
-
-        // Kullanıcının şifresini güncelle
-        kullanici.setSifre(hashedPassword);
-        userService.save(kullanici);
-
-        return ResponseEntity.ok("Şifre başarıyla güncellendi.");
     }
 
 
+
 }
+

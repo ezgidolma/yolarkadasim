@@ -61,6 +61,8 @@ public class UserService {
 
     }
 
+
+
     public void deleteUser(String id){
         userRepository.deleteById(id);
     }
@@ -70,7 +72,5 @@ public class UserService {
         return userRepository.findById(kullaniciId).orElse(null);
     }
 
-    public void save(User kullanici) {
-        userRepository.save(kullanici);
-    }
+
 }
