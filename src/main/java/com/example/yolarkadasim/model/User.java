@@ -8,7 +8,6 @@ import org.springframework.data.mongodb.core.index.Indexed;
 
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -27,7 +26,7 @@ public class User  {
 
     private String sifre;
 
-    private LocalDateTime kayitTarihi=LocalDateTime.now();
+    private LocalDate kayitTarihi=LocalDate.now();
 
     private String profilResmi;
 
