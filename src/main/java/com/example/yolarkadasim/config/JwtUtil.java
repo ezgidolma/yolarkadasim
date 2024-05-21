@@ -23,10 +23,9 @@ public class JwtUtil {
                 .claim("eposta", user.getEposta())
                 .claim("kayitTarihi",user.getKayitTarihi() != null ? user.getKayitTarihi()  .toString() : null)
                 .claim("profilResmi", user.getProfilResmi())
-                .claim("sifre",user.getSifre())
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(SECRET_KEY);
 
-        return "token " + builder.compact();
+        return  "token " + builder.compact();
     }
     }
