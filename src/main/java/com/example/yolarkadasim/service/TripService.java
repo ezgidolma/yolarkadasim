@@ -2,8 +2,6 @@ package com.example.yolarkadasim.service;
 
 import com.example.yolarkadasim.model.Trip;
 import com.example.yolarkadasim.repository.TripRepository;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -11,11 +9,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
 public class TripService {
 
-    @Autowired
-    public TripRepository tripRepository;
+
+    private final TripRepository tripRepository;
+
+    public TripService(TripRepository tripRepository) {
+        this.tripRepository = tripRepository;
+    }
 
     public List<Trip> getTrips(){
       return tripRepository.findAll();

@@ -12,8 +12,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/mesajlar")
 public class MessageController {
-
-
     private final MessageService messageService;
 
     public MessageController(MessageService messageService) {

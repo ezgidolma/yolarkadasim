@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seyahat Kartı</title>
+  <style>
+        /* CSS kodları */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .dialog {
+            background-color: #fff;
+            max-width: 800px;
+            border-radius: 20px;
+            margin: 20px auto;
+            padding: 20px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+        }
+
+        .dialog .timeline {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .dialog .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .dialog .timeline-item span {
+            margin-left: 10px;
+        }
+
+        .dialog .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .dialog .user-info p {
+            margin-left: 10px;
+        }
+
+        .dialog .message-input {
+            margin-top: 20px;
+        }
+
+        .dialog .message-input input[type="text"] {
+            width: calc(100% - 70px);
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-right: 10px;
+        }
+
+        .dialog .message-input button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="dialog">
+  <!-- İçerik -->
+</div>
+
+<script>
+        let websocket;
+
+        function connectWebSocket() {
+            websocket = new WebSocket("ws://localhost:8080");
+
+            websocket.onopen = function(event) {
+                console.log("WebSocket bağlandı.");
+            };
+
+            websocket.onmessage = function(event) {
+                console.log("Mesaj alındı:", event.data);
+                // Gelen mesajı işlemek için gereken kodu buraya ekleyin
+            };
+
+            websocket.onclose = function(event) {
+                console.log("WebSocket bağlantısı kapandı.");
+            };
+
+            websocket.onerror = function(event) {
+                console.error("WebSocket hatası:", event);
+            };
+        }
+
+        function sendMessage() {
+            var message = document.getElementById("messageInput").value;
+            websocket.send(message);
+            console.log("Gönderilen Mesaj:", message);
+            document.getElementById("messageInput").value = "";
+        }
+    </script>
+</body>
+</html>

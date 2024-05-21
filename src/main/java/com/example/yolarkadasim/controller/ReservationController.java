@@ -9,8 +9,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/rezervasyonlar")
 public class ReservationController {
-
-
     private final ReservationService reservationService;
 
     public ReservationController(ReservationService reservationService) {

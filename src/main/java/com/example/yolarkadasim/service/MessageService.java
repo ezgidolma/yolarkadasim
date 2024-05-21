@@ -2,18 +2,19 @@ package com.example.yolarkadasim.service;
 
 import com.example.yolarkadasim.model.Message;
 import com.example.yolarkadasim.repository.MessageRepository;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
 public class MessageService {
 
-    @Autowired
-    public MessageRepository messageRepository;
+
+    private final MessageRepository messageRepository;
+
+    public MessageService(MessageRepository messageRepository) {
+        this.messageRepository = messageRepository;
+    }
 
     public List<Message> getMessagges(){
         return messageRepository.findAll();

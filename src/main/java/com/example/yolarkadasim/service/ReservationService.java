@@ -3,20 +3,20 @@ package com.example.yolarkadasim.service;
 
 import com.example.yolarkadasim.model.Reservation;
 import com.example.yolarkadasim.repository.ReservationRepository;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
 
 @Service
-@AllArgsConstructor
 public class ReservationService {
 
-    @Autowired
-    public ReservationRepository reservationRepository;
 
+    private final ReservationRepository reservationRepository;
+
+    public ReservationService(ReservationRepository reservationRepository) {
+        this.reservationRepository = reservationRepository;
+    }
 
     public List<Reservation> getReservations(){
        return reservationRepository.findAll();

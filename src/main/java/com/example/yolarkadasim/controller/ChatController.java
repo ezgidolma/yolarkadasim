@@ -1,10 +1,6 @@
 package com.example.yolarkadasim.controller;
 
 import com.example.yolarkadasim.model.Chat;
-import com.example.yolarkadasim.repository.ChatRepository;
-import com.example.yolarkadasim.repository.MessageRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-
 
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;

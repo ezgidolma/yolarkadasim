@@ -5,8 +5,6 @@ import com.example.yolarkadasim.service.TripService;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import org.springframework.web.bind.annotation.*;
-
-
 import java.time.LocalDate;
 
 import java.util.List;
@@ -15,7 +13,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/seyahatler")
 public class TripController {
-
     private final TripService tripService;
 
     public TripController(TripService tripService) {
